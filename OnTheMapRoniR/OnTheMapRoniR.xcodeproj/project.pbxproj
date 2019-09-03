@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB3DC89B22FB50AA0014F44C /* OnTheMapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3DC89A22FB50AA0014F44C /* OnTheMapClient.swift */; };
 		BB45A35C22F928EF0004620E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45A35B22F928EF0004620E /* AppDelegate.swift */; };
-		BB45A35E22F928EF0004620E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45A35D22F928EF0004620E /* ViewController.swift */; };
+		BB45A35E22F928EF0004620E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45A35D22F928EF0004620E /* LoginViewController.swift */; };
 		BB45A36122F928EF0004620E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB45A35F22F928EF0004620E /* Main.storyboard */; };
 		BB45A36322F928F00004620E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB45A36222F928F00004620E /* Assets.xcassets */; };
 		BB45A36622F928F00004620E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB45A36422F928F00004620E /* LaunchScreen.storyboard */; };
+		BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F9B832316FA4A0099E486 /* LoginRequest.swift */; };
+		BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21097231ED5800068C77E /* AccountResponse.swift */; };
+		BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21099231ED61C0068C77E /* SessionResponse.swift */; };
+		BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */; };
+		BBD215652319C28D000F7A16 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD215642319C28D000F7A16 /* LoginResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB3DC89A22FB50AA0014F44C /* OnTheMapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapClient.swift; sourceTree = "<group>"; };
 		BB45A35822F928EF0004620E /* OnTheMapRoniR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMapRoniR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB45A35B22F928EF0004620E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB45A35D22F928EF0004620E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BB45A35D22F928EF0004620E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BB45A36022F928EF0004620E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB45A36222F928F00004620E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB45A36522F928F00004620E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB45A36722F928F00004620E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB7F9B832316FA4A0099E486 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		BBB21097231ED5800068C77E /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
+		BBB21099231ED61C0068C77E /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+		BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMResponse.swift; sourceTree = "<group>"; };
+		BBD215642319C28D000F7A16 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,76 @@
 		BB45A35A22F928EF0004620E /* OnTheMapRoniR */ = {
 			isa = PBXGroup;
 			children = (
+				BB45A37022F92AB40004620E /* Assets */,
+				BB45A36F22F929720004620E /* Controller */,
+				BB45A36E22F9296C0004620E /* View */,
+				BB45A36D22F929620004620E /* Model */,
 				BB45A35B22F928EF0004620E /* AppDelegate.swift */,
-				BB45A35D22F928EF0004620E /* ViewController.swift */,
-				BB45A35F22F928EF0004620E /* Main.storyboard */,
-				BB45A36222F928F00004620E /* Assets.xcassets */,
-				BB45A36422F928F00004620E /* LaunchScreen.storyboard */,
 				BB45A36722F928F00004620E /* Info.plist */,
 			);
 			path = OnTheMapRoniR;
+			sourceTree = "<group>";
+		};
+		BB45A36D22F929620004620E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BB7F9B822316FA210099E486 /* OnTheMap Requests */,
+				BBBBFBAE230F0ADC0055A7D6 /* OnTheMap Responses */,
+				BBC9799E22FA761E009916AA /* OnTheMap Client */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BB45A36E22F9296C0004620E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB45A36F22F929720004620E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BB45A35D22F928EF0004620E /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BB45A37022F92AB40004620E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				BB45A35F22F928EF0004620E /* Main.storyboard */,
+				BB45A36222F928F00004620E /* Assets.xcassets */,
+				BB45A36422F928F00004620E /* LaunchScreen.storyboard */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		BB7F9B822316FA210099E486 /* OnTheMap Requests */ = {
+			isa = PBXGroup;
+			children = (
+				BB7F9B832316FA4A0099E486 /* LoginRequest.swift */,
+			);
+			path = "OnTheMap Requests";
+			sourceTree = "<group>";
+		};
+		BBBBFBAE230F0ADC0055A7D6 /* OnTheMap Responses */ = {
+			isa = PBXGroup;
+			children = (
+				BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */,
+				BBD215642319C28D000F7A16 /* LoginResponse.swift */,
+				BBB21097231ED5800068C77E /* AccountResponse.swift */,
+				BBB21099231ED61C0068C77E /* SessionResponse.swift */,
+			);
+			path = "OnTheMap Responses";
+			sourceTree = "<group>";
+		};
+		BBC9799E22FA761E009916AA /* OnTheMap Client */ = {
+			isa = PBXGroup;
+			children = (
+				BB3DC89A22FB50AA0014F44C /* OnTheMapClient.swift */,
+			);
+			path = "OnTheMap Client";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB45A35E22F928EF0004620E /* ViewController.swift in Sources */,
+				BB3DC89B22FB50AA0014F44C /* OnTheMapClient.swift in Sources */,
+				BB45A35E22F928EF0004620E /* LoginViewController.swift in Sources */,
+				BBD215652319C28D000F7A16 /* LoginResponse.swift in Sources */,
+				BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */,
 				BB45A35C22F928EF0004620E /* AppDelegate.swift in Sources */,
+				BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */,
+				BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */,
+				BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
