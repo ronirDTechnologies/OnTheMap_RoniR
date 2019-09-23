@@ -12,8 +12,7 @@ import Foundation
 // password - (String) the password for a Udacity student
 
 struct LoginRequest: Codable{
-    let udacity:[String:String]
-    let username: String
-    let password: String
+    let udacity:LoginCredentials
+    
     
 }

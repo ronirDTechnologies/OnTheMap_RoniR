@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct SessionResponse:Codable {
+struct SessionResponse: Codable {
     let id: String
-    let expiration: Date
+    let expiration: String
 }

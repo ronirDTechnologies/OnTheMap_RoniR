@@ -13,8 +13,8 @@ struct OTMResponse: Codable {
     let statusMessage: String
     
     enum CodingKeys: String, CodingKey {
-        case statusCode = "status_code"
-        case statusMessage = "status_message"
+        case statusCode = "status"
+        case statusMessage = "error"
     }
     
     

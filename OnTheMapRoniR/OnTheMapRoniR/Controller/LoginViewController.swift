@@ -28,17 +28,28 @@ class LoginViewController: UIViewController {
         UIApplication.shared.open(OnTheMapClient.Endpoints.getUdacitySignUpPage.url , options: [:], completionHandler: nil)
     }
     
+    
     func getSessionHelper() -> Void{
         OnTheMapClient.getSessionId(userName: self.emailTxtBx.text ?? "", password: self.passwordTxtBx.text ?? "", completion: self.handleSessionResponse(success:error:))
     }
     
     func handleSessionResponse(success: Bool, error: Error?){
         if success {
+            //TODO: 09-09-2019 Segue to next screen
+            self.performSegue(withIdentifier: "AfterLoginSuccessSegue", sender: nil)
             print("OBTAINED SESSION ID : NOW LOGGIN IN")
         }
-        else{
+        else
+        {
+            showLoginFailure(message: error?.localizedDescription ?? "")
+            
             print("FAILED TO OBTAIN SESSION")
         }
+    }
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        show(alertVC, sender: nil)
     }
     
 }

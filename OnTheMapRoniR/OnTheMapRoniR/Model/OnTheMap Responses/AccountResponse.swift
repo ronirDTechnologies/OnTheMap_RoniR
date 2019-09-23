@@ -10,5 +10,5 @@ import Foundation
 
 struct AccountResponse: Codable {
         let registered: Bool
-        let key: Int32
+        let key: String
 }

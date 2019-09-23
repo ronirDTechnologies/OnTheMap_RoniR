@@ -7,20 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB2456CF23354AB700104581 /* StudentInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2456CE23354AB700104581 /* StudentInfoTableViewCell.swift */; };
 		BB3DC89B22FB50AA0014F44C /* OnTheMapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3DC89A22FB50AA0014F44C /* OnTheMapClient.swift */; };
 		BB45A35C22F928EF0004620E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45A35B22F928EF0004620E /* AppDelegate.swift */; };
 		BB45A35E22F928EF0004620E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB45A35D22F928EF0004620E /* LoginViewController.swift */; };
 		BB45A36122F928EF0004620E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB45A35F22F928EF0004620E /* Main.storyboard */; };
 		BB45A36322F928F00004620E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB45A36222F928F00004620E /* Assets.xcassets */; };
 		BB45A36622F928F00004620E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB45A36422F928F00004620E /* LaunchScreen.storyboard */; };
+		BB5134E923202E2B00525E66 /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5134E823202E2B00525E66 /* LoginCredentials.swift */; };
+		BB71011C233321E500E4A7DA /* StudentInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB71011B233321E500E4A7DA /* StudentInfoTableViewController.swift */; };
+		BB7AD6DE232FFB1600AD5DF5 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7AD6DD232FFB1600AD5DF5 /* StudentInformation.swift */; };
 		BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F9B832316FA4A0099E486 /* LoginRequest.swift */; };
+		BB910F7E2333FDD5002F63F4 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB910F7D2333FDD5002F63F4 /* StudentModel.swift */; };
 		BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21097231ED5800068C77E /* AccountResponse.swift */; };
 		BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21099231ED61C0068C77E /* SessionResponse.swift */; };
 		BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */; };
+		BBC32E602331541200FCD54B /* StudentInformationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC32E5F2331541200FCD54B /* StudentInformationResults.swift */; };
 		BBD215652319C28D000F7A16 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD215642319C28D000F7A16 /* LoginResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB2456CE23354AB700104581 /* StudentInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewCell.swift; sourceTree = "<group>"; };
 		BB3DC89A22FB50AA0014F44C /* OnTheMapClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapClient.swift; sourceTree = "<group>"; };
 		BB45A35822F928EF0004620E /* OnTheMapRoniR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMapRoniR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB45A35B22F928EF0004620E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,10 +36,15 @@
 		BB45A36222F928F00004620E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB45A36522F928F00004620E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB45A36722F928F00004620E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB5134E823202E2B00525E66 /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
+		BB71011B233321E500E4A7DA /* StudentInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewController.swift; sourceTree = "<group>"; };
+		BB7AD6DD232FFB1600AD5DF5 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		BB7F9B832316FA4A0099E486 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		BB910F7D2333FDD5002F63F4 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		BBB21097231ED5800068C77E /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		BBB21099231ED61C0068C77E /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMResponse.swift; sourceTree = "<group>"; };
+		BBC32E5F2331541200FCD54B /* StudentInformationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationResults.swift; sourceTree = "<group>"; };
 		BBD215642319C28D000F7A16 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +91,7 @@
 		BB45A36D22F929620004620E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB910F7C2333FDBE002F63F4 /* Data */,
 				BB7F9B822316FA210099E486 /* OnTheMap Requests */,
 				BBBBFBAE230F0ADC0055A7D6 /* OnTheMap Responses */,
 				BBC9799E22FA761E009916AA /* OnTheMap Client */,
@@ -89,6 +102,7 @@
 		BB45A36E22F9296C0004620E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BB2456CE23354AB700104581 /* StudentInfoTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BB45A35D22F928EF0004620E /* LoginViewController.swift */,
+				BB71011B233321E500E4A7DA /* StudentInfoTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -119,6 +134,14 @@
 			path = "OnTheMap Requests";
 			sourceTree = "<group>";
 		};
+		BB910F7C2333FDBE002F63F4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BB910F7D2333FDD5002F63F4 /* StudentModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		BBBBFBAE230F0ADC0055A7D6 /* OnTheMap Responses */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +149,9 @@
 				BBD215642319C28D000F7A16 /* LoginResponse.swift */,
 				BBB21097231ED5800068C77E /* AccountResponse.swift */,
 				BBB21099231ED61C0068C77E /* SessionResponse.swift */,
+				BB5134E823202E2B00525E66 /* LoginCredentials.swift */,
+				BB7AD6DD232FFB1600AD5DF5 /* StudentInformation.swift */,
+				BBC32E5F2331541200FCD54B /* StudentInformationResults.swift */,
 			);
 			path = "OnTheMap Responses";
 			sourceTree = "<group>";
@@ -209,14 +235,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC32E602331541200FCD54B /* StudentInformationResults.swift in Sources */,
+				BB5134E923202E2B00525E66 /* LoginCredentials.swift in Sources */,
 				BB3DC89B22FB50AA0014F44C /* OnTheMapClient.swift in Sources */,
 				BB45A35E22F928EF0004620E /* LoginViewController.swift in Sources */,
 				BBD215652319C28D000F7A16 /* LoginResponse.swift in Sources */,
+				BB71011C233321E500E4A7DA /* StudentInfoTableViewController.swift in Sources */,
+				BB910F7E2333FDD5002F63F4 /* StudentModel.swift in Sources */,
 				BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */,
 				BB45A35C22F928EF0004620E /* AppDelegate.swift in Sources */,
 				BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */,
 				BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */,
+				BB7AD6DE232FFB1600AD5DF5 /* StudentInformation.swift in Sources */,
 				BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */,
+				BB2456CF23354AB700104581 /* StudentInfoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +404,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dtech.OnTheMapRoniR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -390,7 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dtech.OnTheMapRoniR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
