@@ -21,20 +21,30 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func loginToUdacity(_ sender: Any) {
-        getSessionHelper()
+       getSessionHelper()
     }
     @IBAction func launchUdacitySignUp(_ sender: Any) {
         print("LAUNCH UDACITY SIGNUP")
         UIApplication.shared.open(OnTheMapClient.Endpoints.getUdacitySignUpPage.url , options: [:], completionHandler: nil)
     }
     
+    func getUserFullNameHelperResponse(success:Bool, error: Error?)
+    {
+        print("FIRST NAME: \(OnTheMapClient.Auth.firstName) LAST NAME: \(OnTheMapClient.Auth.lastName)")
+    }
     
+    func getUserFullName () -> Void{
+        OnTheMapClient.getUserInfo(userKey: OnTheMapClient.Auth.userKey, completion: self.getUserFullNameHelperResponse(success:error:))
+    }
     func getSessionHelper() -> Void{
         OnTheMapClient.getSessionId(userName: self.emailTxtBx.text ?? "", password: self.passwordTxtBx.text ?? "", completion: self.handleSessionResponse(success:error:))
+        
+        
     }
     
     func handleSessionResponse(success: Bool, error: Error?){
         if success {
+            getUserFullName()
             //TODO: 09-09-2019 Segue to next screen
             self.performSegue(withIdentifier: "AfterLoginSuccessSegue", sender: nil)
             print("OBTAINED SESSION ID : NOW LOGGIN IN")

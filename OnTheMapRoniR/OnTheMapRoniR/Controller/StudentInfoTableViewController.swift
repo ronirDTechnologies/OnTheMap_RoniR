@@ -15,7 +15,9 @@ class StudentInfoTableViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         OnTheMapClient.getStudentInformation(numberOfStudentsToRetrieve: "100"){(data,error) in
-        
+            guard let data = data else{
+                return
+            }
             StudentModel.studentList = data
             self.StudentInfoTV.reloadData()
         }

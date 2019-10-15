@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class OnTheMapClient
 {
@@ -14,12 +15,21 @@ class OnTheMapClient
     struct Auth
     {
         static var sessionId = ""
+        static var userKey = ""
+        static var firstName = ""
+        static var lastName = ""
+    }
+    
+    struct LocationDetail {
+        static var longitudeVal: CLLocationDegrees = 0.0
+        static var latitudeVal: CLLocationDegrees = 0.0
     }
     
     enum Endpoints
     {
         static let udacitySignUpPage = "https://auth.udacity.com/sign-up"
         static let getSessionIdBase = "https://onthemap-api.udacity.com/v1/session"
+        static let getUserInfo = "https://onthemap-api.udacity.com/v1/users/"
         static let base = "https://onthemap-api.udacity.com/v1/"
         //https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt
         
@@ -28,6 +38,7 @@ class OnTheMapClient
         case getUdacitySignUpPage
         case getSessionId
         case getStudentLocationMax(String)
+        case getPublicUserData(String)
         
         
         var stringValue: String
@@ -37,6 +48,7 @@ class OnTheMapClient
                 case .getUdacitySignUpPage: return Endpoints.udacitySignUpPage
                 case .getSessionId: return Endpoints.getSessionIdBase
                 case .getStudentLocationMax(let maxUsers): return Endpoints.base + "/StudentLocation?limit=\(maxUsers)?order=-updatedAt"
+                case .getPublicUserData(let userId): return Endpoints.getUserInfo + userId
             }
         }
         
@@ -45,7 +57,39 @@ class OnTheMapClient
             return URL(string: stringValue)!
         }
     }
-    class func getStudentInformation(numberOfStudentsToRetrieve:String,completion: @escaping ([StudentInformation], Error?) -> Void){
+    
+    /*class func postStudentInformationLocation(locationName: String, completion: @escaping (LocationCoordinatesModel?, Error?) -> Bool)
+    {
+        // 1. Validate location entered
+        print("Session Id: \(Auth.sessionId) UserKey: \(Auth.userKey)")
+    }*/
+    class func validateAddressEntered(address:String,completion: @escaping (Bool,Error?) -> Void){
+        
+        
+            let locationManager = CLGeocoder()
+            locationManager.geocodeAddressString(address, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
+                if let placemark = placemarks?[0]{
+                    LocationDetail.latitudeVal = placemark.location!.coordinate.latitude
+                    LocationDetail.longitudeVal = placemark.location!.coordinate.longitude
+                    completion(true, error)
+                }
+                else{
+                    completion(false,error)
+                }
+            } )
+        
+        
+           }
+    class func postStudentInformationLocation()
+    {
+        // 1. Validate location entered
+        print("Session Id: \(Auth.sessionId) UserKey: \(Auth.userKey)")
+        
+        
+       
+    }
+    
+    class func getStudentInformation(numberOfStudentsToRetrieve:String,completion: @escaping ([StudentInformation]?, Error?) -> Void){
         
         taskForGETRequest(url: Endpoints.getStudentLocationMax(numberOfStudentsToRetrieve).url, responseType: StudentInformationResults.self){
             (response,error) in
@@ -65,6 +109,33 @@ class OnTheMapClient
             }
         }
     }
+    
+    class func getUserInfo(userKey: String, completion: @escaping( Bool, Error?) -> Void)
+    {
+        
+        print("END POINT CHECK \(Endpoints.getPublicUserData(Auth.userKey).stringValue)")
+         taskForGETRequest(url: Endpoints.getPublicUserData(Auth.userKey).url
+               , responseType: PublicUserDataResponse.self){
+                   (response,error) in
+                   if let response = response
+                   {
+                       DispatchQueue.main.async
+                       {
+                        Auth.firstName = response.first_name!
+                        Auth.lastName = response.last_name!
+                           completion(true, nil)
+                       }
+                   }
+                   else
+                   {
+                       DispatchQueue.main.async
+                       {
+                           completion(false, error)
+                       }
+                   }
+               }    }
+    
+   
     class func getSessionId(userName:String, password:String, completion:@escaping (Bool, Error?) -> Void)
     {
         // 1. Set Body
@@ -78,6 +149,9 @@ class OnTheMapClient
                 {
                     DispatchQueue.main.async
                     {
+                        // Set the sessionId & userKey
+                        Auth.sessionId = response.session.id
+                        Auth.userKey = response.account.key
                         completion(true,nil)
                     }
                     
