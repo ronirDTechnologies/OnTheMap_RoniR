@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MapKit
 import CoreLocation
 
-class AddLocationViewController: UIViewController {
+class AddLocationViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var CancelLocationAdd: UIBarButtonItem!
     @IBOutlet weak var AddressTxtBx: UITextField!
@@ -26,8 +27,9 @@ class AddLocationViewController: UIViewController {
             return
         }
         
-        // 2. TODO: 09-27 - Validate address returns longitude, latitude
-        OnTheMapClient.validateAddressEntered(address: self.AddressTxtBx.text ?? "", completion: self.HandleLocationCheckResponse(locationExists:error:))
+        
+        
+       
         
         
         
@@ -39,27 +41,67 @@ class AddLocationViewController: UIViewController {
             return
         }
         
+        
+        // 2. TODO: 09-27 - Validate address returns longitude, latitude
+        
+        
+        if OnTheMapClient.validateAddressEntered(address: self.AddressTxtBx.text ?? "", completion: self.HandleLocationCheckResponse(locationExists: error:)){
+            
+        }
+        //navigationController?.dismiss(animated: true, completion: {})
+        //print("THE POSTING HAS THE FOLLOWING STATUS ")
+        //print("LATITUDE: \(OnTheMapClient.self.LocationDetail.latitudeVal)")
+        //print("LONGITUDE: \(OnTheMapClient.LocationDetail.longitudeVal)")
         //findCityCoordinates(cityName: AddressTxtBx.text ?? "")
+    }
+    func DebugPostedUserLocation(successfulPost:Bool, error: Error?)
+    {
+        print("THE POSTING HAS THE FOLLOWING STATUS \(successfulPost)")
+        print("LATITUDE: \(OnTheMapClient.LocationDetail.latitudeVal)")
+        print("LONGITUDE: \(OnTheMapClient.LocationDetail.longitudeVal)")
+        //performSegue(withIdentifier: "OnTheMapSegue", sender: nil)
+        
+        //self.navigationController?.performSegue(withIdentifier: "BackToMapSegue", sender: nil)
+        //self.navigationController?.popToRootViewController(animated: true)
+        //self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
+        //self.navigationController?.unwind(for: self.seg, towards: StudentLocationMapViewController)
+        navigationController?.popToRootViewController(animated: true)
+        
     }
     func HandleLocationCheckResponse(locationExists: Bool, error: Error?)
     {
         if locationExists{
             print("WE FOUND THE ENTERED LOCATION")
+                
+            print("LOCATION EXISTS ************** ")
+            print("LATITUDE: \(OnTheMapClient.LocationDetail.latitudeVal)")
+            print("LONGITUDE: \(OnTheMapClient.LocationDetail.longitudeVal)")
+            let urlStr = UrlTxtBx.text ?? ""
+          
+            OnTheMapClient.postStudentInformationLocation(mapStringLocation: AddressTxtBx.text ?? "", mediaUrlStr: urlStr, completion: self.DebugPostedUserLocation(successfulPost:error:))
             
+            //navigationController?.dismiss(animated: true, completion: {})
+            //storyboard.stude  StudentLocationMapVC.
+            
+            //self.navigationController?.popViewController(animated: true)
+            
+            
+            //self.dismiss(animated: true, completion: {})
             
         }
         else{
             // Notify user to input a valid address
             showLoginFailure(message: "YOU ENTERED AN INVALID ADDRESS.  PLEASE ENTER IN THE FORMAT CITY, STATE OR MAKE SURE YOUR SPELLING IS CORRECT")
-            return
+         
             
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //OnTheMapClient.postStudentInformationLocation()
+        
         // Do any additional setup after loading the view.
     }
+    
     /*func findCityCoordinates(cityName: String)  {
         let locationManager = CLGeocoder()
         locationManager.geocodeAddressString(cityName, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
@@ -75,14 +117,30 @@ class AddLocationViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         show(alertVC, sender: nil)
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
+        if segue.identifier == "BackToMapSegue"{
+            if let destinationVC = segue.destination as? StudentLocationMapViewController {
+                   //destinationVC.numberToDisplay = counter
+            
+            //DispatchQueue.main.async
+              //  {
+                   /* let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: OnTheMapClient.LocationDetail.latitudeVal, longitude: OnTheMapClient.LocationDetail.longitudeVal), span: MKCoordinateSpan(latitudeDelta: 0.07, longitudeDelta: 0.07))
+                    
+                    destinationVC.StudentLocationMap.setRegion(region, animated: true)*/
+                    destinationVC.LoadDataPoints()
+                    //destinationVC.StudentLocationMap.reloadInputViews()
+                    //destinationVC.self.reloadInputViews()
+                //let annotation = MKPointAnnotation()
+                //annotation.coordinate = location.coordinate
+                //self.mapView.addAnnotation(annotation)
+               //}
+            }}}
+    
 
 }

@@ -14,8 +14,41 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var AddLocationBtn: UIBarButtonItem!
     @IBOutlet weak var StudentLocationMap: MKMapView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: OnTheMapClient.LocationDetail.latitudeVal, longitude: OnTheMapClient.LocationDetail.longitudeVal), span: MKCoordinateSpan(latitudeDelta: 0.07, longitudeDelta: 0.07))
+        
+        self.StudentLocationMap.setRegion(region, animated: true)
+        self.LoadDataPoints()
+        StudentLocationMap.reloadInputViews()
+    }
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
+        self.LoadDataPoints()
+        let barButtonItemAddLoc = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        let refreshButtonItemAddLoc = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed))
+        //OnTheMapClient.postStudentInformationLocation()
+        navigationItem.rightBarButtonItems = [refreshButtonItemAddLoc,barButtonItemAddLoc]
+        
+        
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    @objc func addButtonPressed()
+    {
+        let addLocVC = storyboard!.instantiateViewController(withIdentifier: "AddLocationVC")  as! AddLocationViewController
+        navigationController?.pushViewController(addLocVC, animated: true)
+    }
+    @objc func refreshButtonPressed()
+    {
+           
+    }
+    func LoadDataPoints()
+    {
         OnTheMapClient.getStudentInformation(numberOfStudentsToRetrieve: "100"){(data,error) in
             guard let data = data else{
                 return
@@ -48,10 +81,7 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate{
             }
             self.StudentLocationMap.addAnnotations(annotations)
         }
-        
-        // Do any additional setup after loading the view.
     }
-    
     // Here we create a view with a "right callout accessory view". You might choose to look into other
     // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
     // method in TableViewDataSource.
@@ -94,5 +124,7 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate{
         // Pass the selected object to the new view controller.
     }
     */
-
+    override func reloadInputViews() {
+        LoadDataPoints()
+    }
 }

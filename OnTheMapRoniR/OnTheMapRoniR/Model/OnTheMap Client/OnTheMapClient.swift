@@ -27,6 +27,7 @@ class OnTheMapClient
     
     enum Endpoints
     {
+        static let postStudentLocationUrl = "https://onthemap-api.udacity.com/v1/StudentLocation"
         static let udacitySignUpPage = "https://auth.udacity.com/sign-up"
         static let getSessionIdBase = "https://onthemap-api.udacity.com/v1/session"
         static let getUserInfo = "https://onthemap-api.udacity.com/v1/users/"
@@ -37,6 +38,7 @@ class OnTheMapClient
         
         case getUdacitySignUpPage
         case getSessionId
+        case postStudentLocation
         case getStudentLocationMax(String)
         case getPublicUserData(String)
         
@@ -49,6 +51,7 @@ class OnTheMapClient
                 case .getSessionId: return Endpoints.getSessionIdBase
                 case .getStudentLocationMax(let maxUsers): return Endpoints.base + "/StudentLocation?limit=\(maxUsers)?order=-updatedAt"
                 case .getPublicUserData(let userId): return Endpoints.getUserInfo + userId
+                case .postStudentLocation: return Endpoints.postStudentLocationUrl
             }
         }
         
@@ -63,35 +66,70 @@ class OnTheMapClient
         // 1. Validate location entered
         print("Session Id: \(Auth.sessionId) UserKey: \(Auth.userKey)")
     }*/
-    class func validateAddressEntered(address:String,completion: @escaping (Bool,Error?) -> Void){
+    class func validateAddressEntered(address:String,completion:@escaping  (Bool,Error?) -> Void) -> Bool
+    {
         
-        
+            var isValidated = false
             let locationManager = CLGeocoder()
-            locationManager.geocodeAddressString(address, completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
+            locationManager.geocodeAddressString(address, completionHandler: {
+                (placemarks: [CLPlacemark]?, error: Error?) -> Void in
                 if let placemark = placemarks?[0]{
-                    LocationDetail.latitudeVal = placemark.location!.coordinate.latitude
-                    LocationDetail.longitudeVal = placemark.location!.coordinate.longitude
+                    self.LocationDetail.latitudeVal = placemark.location!.coordinate.latitude
+                    self.LocationDetail.longitudeVal = placemark.location!.coordinate.longitude
                     completion(true, error)
+                    isValidated = true
                 }
                 else{
                     completion(false,error)
+                    
                 }
             } )
         
-        
+        return isValidated
            }
-    class func postStudentInformationLocation()
+    class func postStudentInformationLocation(mapStringLocation:String,mediaUrlStr:String, completion:@escaping (Bool, Error?) -> Void)
     {
-        // 1. Validate location entered
-        print("Session Id: \(Auth.sessionId) UserKey: \(Auth.userKey)")
         
+        // 1.  Set Body
+        
+        print("Session Id: \(Auth.sessionId) UserKey: \(Auth.userKey) First Name: \(Auth.firstName)  Last Name: \(Auth.lastName)")
+        let requestBody = PostingStudentLocationRequest(uniqueKey: Auth.sessionId, firstName: Auth.firstName, lastName: Auth.lastName, mapString:mapStringLocation , mediaURL: mediaUrlStr, latitude: self.LocationDetail.latitudeVal, longitude: self.LocationDetail.longitudeVal)
+        
+        taskForPOSTRequest(extraCharFlag:false, acceptIncludeFlag:false ,contentTypeIncludeFlag: true, url: Endpoints.postStudentLocation.url, responseType: PostingStudentLocationResponse.self, body: requestBody) {(response,error) in
+            if let response = response
+            {
+                if response.objectId != ""
+                {
+                    DispatchQueue.main.async
+                    {
+                        completion(true,nil)
+                    }
+                    
+                }
+                else
+                {
+                    completion(false,error)
+                }
+                    
+            }
+            
+            else
+            {
+                DispatchQueue.main.async {
+                    completion(false, error)
+                }
+                
+            }
+            
+        }
+       
         
        
     }
     
     class func getStudentInformation(numberOfStudentsToRetrieve:String,completion: @escaping ([StudentInformation]?, Error?) -> Void){
         
-        taskForGETRequest(url: Endpoints.getStudentLocationMax(numberOfStudentsToRetrieve).url, responseType: StudentInformationResults.self){
+        taskForGETRequest(extraCharFlag: false, url: Endpoints.getStudentLocationMax(numberOfStudentsToRetrieve).url, responseType: StudentInformationResults.self){
             (response,error) in
             if let response = response
             {
@@ -114,15 +152,15 @@ class OnTheMapClient
     {
         
         print("END POINT CHECK \(Endpoints.getPublicUserData(Auth.userKey).stringValue)")
-         taskForGETRequest(url: Endpoints.getPublicUserData(Auth.userKey).url
-               , responseType: PublicUserDataResponse.self){
+        taskForGETRequest(extraCharFlag: true, url: Endpoints.getPublicUserData(Auth.userKey).url
+               , responseType: PublicUserDataGenResponse.self){
                    (response,error) in
                    if let response = response
                    {
                        DispatchQueue.main.async
                        {
-                        Auth.firstName = response.first_name!
-                        Auth.lastName = response.last_name!
+                        Auth.firstName = response.firstName
+                        Auth.lastName = response.lastName
                            completion(true, nil)
                        }
                    }
@@ -142,7 +180,7 @@ class OnTheMapClient
         let loginCreds = LoginCredentials(username: userName, password: password)
         let loginRequest = LoginRequest(udacity: loginCreds)
         
-        taskForPOSTRequest(url: Endpoints.getSessionId.url, responseType: LoginResponse.self, body: loginRequest){(response,error) in
+        taskForPOSTRequest(extraCharFlag:true, acceptIncludeFlag:true,contentTypeIncludeFlag:true, url: Endpoints.getSessionId.url, responseType: LoginResponse.self, body: loginRequest){(response,error) in
             if let response = response
             {
                 if response.session.id != ""
@@ -174,27 +212,36 @@ class OnTheMapClient
         }
     }
     
-    @discardableResult class func taskForGETRequest<ResponseType: Decodable>(url:URL, responseType: ResponseType.Type,completion: @escaping(ResponseType?,Error?)->Void) -> URLSessionTask{
+    @discardableResult class func taskForGETRequest<ResponseType: Decodable>(extraCharFlag: Bool,url:URL, responseType: ResponseType.Type,completion: @escaping(ResponseType?,Error?)->Void) -> URLSessionTask{
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
+            guard var data = data else {
                 DispatchQueue.main.async {
                     completion(nil, error)
                 }
                 return
             }
-            // Per Udacity API, need to skip the first 5 characters as this is junk data
-            //let range = 5 ..< data.count
-            //let newData = data.subdata(in: range)
+          
+            
             
             let decoder = JSONDecoder()
             do {
+                if extraCharFlag{
+                    // Per Udacity API, need to skip the first 5 characters as this is junk data
+                              let range = 5 ..< data.count
+                              let newData = data.subdata(in: range)
+                              data = newData
+                }
                 let responseObject = try decoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
                     completion(responseObject, nil)
                 }
                 
-            } catch {
+            } catch let error {
+                
+                /*if let decodingError = error as? DecodingError{
+                    print("ERROR converting: \(decodingError.errorDescription.debugDescription)  ERROR REASON: \(decodingError.failureReason.debugDescription) LOCALIZED DESCRIPTION: \(decodingError.localizedDescription)")
+                }*/
                 do{
                     // Per Udacity API, need to skip the first 5 characters as this is junk data
                     let range = 5 ..< data.count
@@ -219,31 +266,43 @@ class OnTheMapClient
         
     }
     
-     @discardableResult class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask{
+    @discardableResult class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(extraCharFlag: Bool,acceptIncludeFlag:Bool, contentTypeIncludeFlag:Bool, url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask{
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if acceptIncludeFlag == true {
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+        }
+        if contentTypeIncludeFlag == true{
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+        
         request.httpBody = try!JSONEncoder().encode(body)
-        print(request.url!)
-        print(request.httpBody.self!)
+        print(request.url?.absoluteString)
+        print("DEBUG POST: \(request.httpBody?.description)")
         
         let task = URLSession.shared.dataTask(with: request){data,response,error in
-            guard let data = data else{
+            guard var data = data else{
                 completion(nil,error)
                 return
             }
             // Per Udacity API, need to skip the first 5 characters as this is junk data
-            let range = 5 ..< data.count
-            let newData = data.subdata(in: range)
+            //let range = 5 ..< data.count
+            //let newData = data.subdata(in: range)
             
             
             let decoder = JSONDecoder()
             do
             {
+                if extraCharFlag{
+                    // Per Udacity API, need to skip the first 5 characters as this is junk data
+                              let range = 5 ..< data.count
+                              let newData = data.subdata(in: range)
+                              data = newData
+                }
                 
-                let responseObject = try decoder.decode(responseType.self,from:newData)
+                let responseObject = try decoder.decode(responseType.self,from:data)
                 completion(responseObject,nil)
             }
             catch

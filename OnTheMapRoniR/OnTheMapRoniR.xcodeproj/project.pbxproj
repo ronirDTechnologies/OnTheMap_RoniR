@@ -22,18 +22,15 @@
 		BB7AD6DE232FFB1600AD5DF5 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7AD6DD232FFB1600AD5DF5 /* StudentInformation.swift */; };
 		BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7F9B832316FA4A0099E486 /* LoginRequest.swift */; };
 		BB910F7E2333FDD5002F63F4 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB910F7D2333FDD5002F63F4 /* StudentModel.swift */; };
-		BB9A860423542062003CEB5B /* PUDREmailObjectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9A860323542062003CEB5B /* PUDREmailObjectResponse.swift */; };
 		BB9F0D1E2339BF4D009D2EF9 /* StudentLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F0D1D2339BF4D009D2EF9 /* StudentLocationMapViewController.swift */; };
 		BBA75C5D233AB0B600ECBD9F /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA75C5C233AB0B600ECBD9F /* AddLocationViewController.swift */; };
 		BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21097231ED5800068C77E /* AccountResponse.swift */; };
 		BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21099231ED61C0068C77E /* SessionResponse.swift */; };
-		BBB93B242356BD1400915D2C /* PublicUserDataStrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB93B232356BD1400915D2C /* PublicUserDataStrResponse.swift */; };
 		BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */; };
 		BBC08D472342FD9D009D34E3 /* LoggedInUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC08D462342FD9D009D34E3 /* LoggedInUserInfo.swift */; };
 		BBC08D492342FE20009D34E3 /* PostingStudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC08D482342FE20009D34E3 /* PostingStudentLocationRequest.swift */; };
 		BBC32E602331541200FCD54B /* StudentInformationResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC32E5F2331541200FCD54B /* StudentInformationResults.swift */; };
 		BBD215652319C28D000F7A16 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD215642319C28D000F7A16 /* LoginResponse.swift */; };
-		BBF7A540234599A200FB46E9 /* PublicUserDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF7A53F234599A200FB46E9 /* PublicUserDataResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,18 +51,15 @@
 		BB7AD6DD232FFB1600AD5DF5 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		BB7F9B832316FA4A0099E486 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		BB910F7D2333FDD5002F63F4 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
-		BB9A860323542062003CEB5B /* PUDREmailObjectResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUDREmailObjectResponse.swift; sourceTree = "<group>"; };
 		BB9F0D1D2339BF4D009D2EF9 /* StudentLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationMapViewController.swift; sourceTree = "<group>"; };
 		BBA75C5C233AB0B600ECBD9F /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		BBB21097231ED5800068C77E /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		BBB21099231ED61C0068C77E /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
-		BBB93B232356BD1400915D2C /* PublicUserDataStrResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserDataStrResponse.swift; sourceTree = "<group>"; };
 		BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMResponse.swift; sourceTree = "<group>"; };
 		BBC08D462342FD9D009D34E3 /* LoggedInUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUserInfo.swift; sourceTree = "<group>"; };
 		BBC08D482342FE20009D34E3 /* PostingStudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingStudentLocationRequest.swift; sourceTree = "<group>"; };
 		BBC32E5F2331541200FCD54B /* StudentInformationResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationResults.swift; sourceTree = "<group>"; };
 		BBD215642319C28D000F7A16 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		BBF7A53F234599A200FB46E9 /* PublicUserDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicUserDataResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				BB45A35D22F928EF0004620E /* LoginViewController.swift */,
+				BB45A36422F928F00004620E /* LaunchScreen.storyboard */,
 				BB71011B233321E500E4A7DA /* StudentInfoTableViewController.swift */,
 				BB9F0D1D2339BF4D009D2EF9 /* StudentLocationMapViewController.swift */,
 				BBA75C5C233AB0B600ECBD9F /* AddLocationViewController.swift */,
@@ -143,7 +138,6 @@
 			children = (
 				BB45A35F22F928EF0004620E /* Main.storyboard */,
 				BB45A36222F928F00004620E /* Assets.xcassets */,
-				BB45A36422F928F00004620E /* LaunchScreen.storyboard */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -177,9 +171,6 @@
 				BB5134E823202E2B00525E66 /* LoginCredentials.swift */,
 				BB7AD6DD232FFB1600AD5DF5 /* StudentInformation.swift */,
 				BBC32E5F2331541200FCD54B /* StudentInformationResults.swift */,
-				BBF7A53F234599A200FB46E9 /* PublicUserDataResponse.swift */,
-				BB9A860323542062003CEB5B /* PUDREmailObjectResponse.swift */,
-				BBB93B232356BD1400915D2C /* PublicUserDataStrResponse.swift */,
 				BB4A7E2123590AE200C6A229 /* PublicUserDataGenResponse.swift */,
 				BB11E1D82360CA440026C5AF /* PostingStudentLocationResponse.swift */,
 			);
@@ -270,13 +261,11 @@
 				BB3DC89B22FB50AA0014F44C /* OnTheMapClient.swift in Sources */,
 				BB45A35E22F928EF0004620E /* LoginViewController.swift in Sources */,
 				BBC08D492342FE20009D34E3 /* PostingStudentLocationRequest.swift in Sources */,
-				BB9A860423542062003CEB5B /* PUDREmailObjectResponse.swift in Sources */,
 				BBD215652319C28D000F7A16 /* LoginResponse.swift in Sources */,
 				BB71011C233321E500E4A7DA /* StudentInfoTableViewController.swift in Sources */,
 				BB910F7E2333FDD5002F63F4 /* StudentModel.swift in Sources */,
 				BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */,
 				BB45A35C22F928EF0004620E /* AppDelegate.swift in Sources */,
-				BBF7A540234599A200FB46E9 /* PublicUserDataResponse.swift in Sources */,
 				BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */,
 				BB527C3A233E83540088F269 /* LocationCoordinatesModel.swift in Sources */,
 				BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */,
@@ -286,7 +275,6 @@
 				BB11E1D92360CA440026C5AF /* PostingStudentLocationResponse.swift in Sources */,
 				BBC08D472342FD9D009D34E3 /* LoggedInUserInfo.swift in Sources */,
 				BB9F0D1E2339BF4D009D2EF9 /* StudentLocationMapViewController.swift in Sources */,
-				BBB93B242356BD1400915D2C /* PublicUserDataStrResponse.swift in Sources */,
 				BB4A7E2223590AE200C6A229 /* PublicUserDataGenResponse.swift in Sources */,
 				BB2456CF23354AB700104581 /* StudentInfoTableViewCell.swift in Sources */,
 			);
