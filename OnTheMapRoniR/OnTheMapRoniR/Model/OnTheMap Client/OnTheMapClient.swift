@@ -49,7 +49,7 @@ class OnTheMapClient
             {
                 case .getUdacitySignUpPage: return Endpoints.udacitySignUpPage
                 case .getSessionId: return Endpoints.getSessionIdBase
-                case .getStudentLocationMax(let maxUsers): return Endpoints.base + "/StudentLocation?limit=\(maxUsers)?order=-updatedAt"
+                case .getStudentLocationMax(let maxUsers): return Endpoints.base + "/StudentLocation?limit=\(maxUsers)&order=-updatedAt"
                 case .getPublicUserData(let userId): return Endpoints.getUserInfo + userId
                 case .postStudentLocation: return Endpoints.postStudentLocationUrl
             }
