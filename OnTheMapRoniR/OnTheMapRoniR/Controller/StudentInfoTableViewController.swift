@@ -24,6 +24,10 @@ class StudentInfoTableViewController: UIViewController{
         
     }
     
+    @IBAction func LogoutBtn(_ sender: Any)
+    {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
