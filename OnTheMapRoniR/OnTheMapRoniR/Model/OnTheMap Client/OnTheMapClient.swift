@@ -20,7 +20,8 @@ class OnTheMapClient
         static var lastName = ""
     }
     
-    struct LocationDetail {
+    struct LocationDetail
+    {
         static var longitudeVal: CLLocationDegrees = 0.0
         static var latitudeVal: CLLocationDegrees = 0.0
     }
@@ -32,9 +33,6 @@ class OnTheMapClient
         static let getSessionIdBase = "https://onthemap-api.udacity.com/v1/session"
         static let getUserInfo = "https://onthemap-api.udacity.com/v1/users/"
         static let base = "https://onthemap-api.udacity.com/v1/"
-        //https://onthemap-api.udacity.com/v1/StudentLocation?order=-updatedAt
-        
-        
         
         case getUdacitySignUpPage
         case getSessionId
@@ -60,33 +58,34 @@ class OnTheMapClient
             return URL(string: stringValue)!
         }
     }
-    
-    /*class func postStudentInformationLocation(locationName: String, completion: @escaping (LocationCoordinatesModel?, Error?) -> Bool)
-    {
-        // 1. Validate location entered
-        print("Session Id: \(Auth.sessionId) UserKey: \(Auth.userKey)")
-    }*/
+
     class func validateAddressEntered(address:String,completion:@escaping  (Bool,Error?) -> Void) -> Bool
     {
         
             var isValidated = false
             let locationManager = CLGeocoder()
-            locationManager.geocodeAddressString(address, completionHandler: {
+            locationManager.geocodeAddressString(address, completionHandler:
+            {
                 (placemarks: [CLPlacemark]?, error: Error?) -> Void in
-                if let placemark = placemarks?[0]{
+                if let placemark = placemarks?[0]
+                {
                     self.LocationDetail.latitudeVal = placemark.location!.coordinate.latitude
                     self.LocationDetail.longitudeVal = placemark.location!.coordinate.longitude
                     completion(true, error)
                     isValidated = true
                 }
-                else{
+                    
+                else
+                {
                     completion(false,error)
                     
                 }
-            } )
+            }
+        )
         
         return isValidated
-           }
+    }
+    
     class func postStudentInformationLocation(mapStringLocation:String,mediaUrlStr:String, completion:@escaping (Bool, Error?) -> Void)
     {
         
@@ -122,14 +121,13 @@ class OnTheMapClient
             }
             
         }
-       
-        
-       
     }
     
-    class func getStudentInformation(numberOfStudentsToRetrieve:String,completion: @escaping ([StudentInformation]?, Error?) -> Void){
+    class func getStudentInformation(numberOfStudentsToRetrieve:String,completion: @escaping ([StudentInformation]?, Error?) -> Void)
+    {
         
-        taskForGETRequest(extraCharFlag: false, url: Endpoints.getStudentLocationMax(numberOfStudentsToRetrieve).url, responseType: StudentInformationResults.self){
+        taskForGETRequest(extraCharFlag: false, url: Endpoints.getStudentLocationMax(numberOfStudentsToRetrieve).url, responseType: StudentInformationResults.self)
+        {
             (response,error) in
             if let response = response
             {
@@ -153,7 +151,8 @@ class OnTheMapClient
         
         print("END POINT CHECK \(Endpoints.getPublicUserData(Auth.userKey).stringValue)")
         taskForGETRequest(extraCharFlag: true, url: Endpoints.getPublicUserData(Auth.userKey).url
-               , responseType: PublicUserDataGenResponse.self){
+               , responseType: PublicUserDataGenResponse.self)
+        {
                    (response,error) in
                    if let response = response
                    {
@@ -171,7 +170,9 @@ class OnTheMapClient
                            completion(false, error)
                        }
                    }
-               }    }
+               }
+        
+    }
     
    
     class func getSessionId(userName:String, password:String, completion:@escaping (Bool, Error?) -> Void)
@@ -212,11 +213,14 @@ class OnTheMapClient
         }
     }
     
-    @discardableResult class func taskForGETRequest<ResponseType: Decodable>(extraCharFlag: Bool,url:URL, responseType: ResponseType.Type,completion: @escaping(ResponseType?,Error?)->Void) -> URLSessionTask{
+    @discardableResult class func taskForGETRequest<ResponseType: Decodable>(extraCharFlag: Bool,url:URL, responseType: ResponseType.Type,completion: @escaping(ResponseType?,Error?)->Void) -> URLSessionTask
+    {
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard var data = data else {
-                DispatchQueue.main.async {
+            guard var data = data else
+            {
+                DispatchQueue.main.async
+                {
                     completion(nil, error)
                 }
                 return
@@ -226,34 +230,38 @@ class OnTheMapClient
             
             let decoder = JSONDecoder()
             do {
-                if extraCharFlag{
+                if extraCharFlag
+                {
                     // Per Udacity API, need to skip the first 5 characters as this is junk data
                               let range = 5 ..< data.count
                               let newData = data.subdata(in: range)
                               data = newData
                 }
+                
                 let responseObject = try decoder.decode(ResponseType.self, from: data)
-                DispatchQueue.main.async {
+                DispatchQueue.main.async
+                {
                     completion(responseObject, nil)
                 }
                 
-            } catch _ {
-                
-                /*if let decodingError = error as? DecodingError{
-                    print("ERROR converting: \(decodingError.errorDescription.debugDescription)  ERROR REASON: \(decodingError.failureReason.debugDescription) LOCALIZED DESCRIPTION: \(decodingError.localizedDescription)")
-                }*/
+            }
+            catch _
+            {
                 do{
                     // Per Udacity API, need to skip the first 5 characters as this is junk data
                     let range = 5 ..< data.count
                     let newErrorData = data.subdata(in: range)
                     
                     let errorResponse = try decoder.decode(OTMResponse.self, from: newErrorData)
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async
+                    {
                         completion(nil,errorResponse)
                     }
                 }
-                catch{
-                    DispatchQueue.main.async {
+                catch
+                {
+                    DispatchQueue.main.async
+                    {
                         completion(nil, error)
                     }
                     
@@ -266,15 +274,19 @@ class OnTheMapClient
         
     }
     
-    @discardableResult class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(extraCharFlag: Bool,acceptIncludeFlag:Bool, contentTypeIncludeFlag:Bool, url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask{
+    @discardableResult class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(extraCharFlag: Bool,acceptIncludeFlag:Bool, contentTypeIncludeFlag:Bool, url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionTask
+    {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        if acceptIncludeFlag == true {
+        if acceptIncludeFlag == true
+        {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
-        if contentTypeIncludeFlag == true{
+        
+        if contentTypeIncludeFlag == true
+        {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
@@ -283,7 +295,8 @@ class OnTheMapClient
         print("DEBUG POST: \(String(describing: request.httpBody?.description))")
         
         let task = URLSession.shared.dataTask(with: request){data,response,error in
-            guard var data = data else{
+            guard var data = data else
+            {
                 completion(nil,error)
                 return
             }
@@ -295,7 +308,8 @@ class OnTheMapClient
             let decoder = JSONDecoder()
             do
             {
-                if extraCharFlag{
+                if extraCharFlag
+                {
                     // Per Udacity API, need to skip the first 5 characters as this is junk data
                               let range = 5 ..< data.count
                               let newData = data.subdata(in: range)
@@ -314,20 +328,23 @@ class OnTheMapClient
                     let newErrorData = data.subdata(in: range)
                     
                     let errorResponse = try decoder.decode(OTMResponse.self, from: newErrorData)
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async
+                    {
                         completion(nil,errorResponse)
                     }
                     
                 }
-                catch{
-                    DispatchQueue.main.async{
+                catch
+                {
+                    DispatchQueue.main.async
+                    {
                         completion(nil,error)
                     }
-                }}
+                }
+                
+            }
         }
         task.resume()
         return task
     }
-    
-    
 }
