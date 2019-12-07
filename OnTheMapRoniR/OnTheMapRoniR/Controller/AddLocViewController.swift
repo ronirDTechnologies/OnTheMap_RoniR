@@ -37,12 +37,12 @@ class AddLocViewController: UIViewController,UINavigationControllerDelegate,MKMa
         // 1. Check location field is not blank
          if self.AddressTxtBx.text == ""
          {
-          showLoginFailure(message: "THE ADDRESS CANNOT BE BLANK.  PLEASE FILL IN CITY / STATE")
+          showLoginFailure(message: "THE ADDRESS CANNOT BE BLANK.  PLEASE FILL IN CITY / STATE", titleVal: "INVALID ADDRESS")
              return
          }
         
         if self.UrlTxtBx.text == "" {
-            showLoginFailure(message: "THE URL CANNOT BE BLANK.  PLEASE FILL IN URL")
+            showLoginFailure(message: "THE URL CANNOT BE BLANK.  PLEASE FILL IN URL", titleVal: "INVALID URL")
             return
         }
          
@@ -51,7 +51,7 @@ class AddLocViewController: UIViewController,UINavigationControllerDelegate,MKMa
          guard let urlVal = URL(string: UrlTxtBx.text ?? "na") else { return }
          let validURl = UIApplication.shared.canOpenURL(urlVal)
          if !validURl {
-             showLoginFailure(message: "INVALID URL.  SHOULD BE FORMED AS HTTPS://exampleUrl.com")
+             showLoginFailure(message: "URL SHOULD BE FORMED AS HTTPS://exampleUrl.com", titleVal: "INVALID URL")
              return
          }
          
@@ -84,7 +84,7 @@ class AddLocViewController: UIViewController,UINavigationControllerDelegate,MKMa
           }
           else{
               // Notify user to input a valid address
-              showLoginFailure(message: "YOU ENTERED AN INVALID ADDRESS.  PLEASE ENTER IN THE FORMAT CITY, STATE OR MAKE SURE YOUR SPELLING IS CORRECT")
+              showLoginFailure(message: "PLEASE ENTER ADDRESS IN THE FORMAT CITY, STATE OR MAKE SURE YOUR SPELLING IS CORRECT", titleVal: "INVALID ADDRESS")
            
               
           }
@@ -104,7 +104,7 @@ class AddLocViewController: UIViewController,UINavigationControllerDelegate,MKMa
         }
         else
         {
-            showLoginFailure(message: "FAILED TO POST USER LOCATION")
+            showLoginFailure(message: "FAILED TO POST USER LOCATION", titleVal: "POSTING FAILURE")
         }
     }
     
@@ -161,8 +161,8 @@ class AddLocViewController: UIViewController,UINavigationControllerDelegate,MKMa
             ActivityIndicator.stopAnimating()
         }
     }
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle:.alert)
+    func showLoginFailure(message: String, titleVal: String) {
+        let alertVC = UIAlertController(title: titleVal, message: message, preferredStyle:.alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }

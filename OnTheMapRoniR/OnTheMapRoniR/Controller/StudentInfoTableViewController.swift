@@ -11,6 +11,7 @@ import UIKit
 
 class StudentInfoTableViewController: UIViewController{
     @IBOutlet weak var StudentInfoTV: UITableView!
+    @IBOutlet weak var TableActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +31,20 @@ class StudentInfoTableViewController: UIViewController{
     }
     @objc func refreshButtonList()
     {
+        //self.SetWorkingAnimation(animate: true)
         OnTheMapClient.getStudentInformation(numberOfStudentsToRetrieve: "100"){(data,error) in
             guard let data = data else{
                 // TODO 12-05: Show error message if download fails
+                
                 return
             }
             StudentModel.studentList = data
+            
+            if(StudentModel.studentList.count == 0)
+            {
+                self.showLoginFailure(message: "Unable to download student data.  Try to refresh")
+            }
+            
             self.StudentInfoTV.reloadData()
         }
     }
@@ -55,7 +64,22 @@ class StudentInfoTableViewController: UIViewController{
         
         StudentInfoTV.reloadData()
     }
-    
+    func SetWorkingAnimation(animate: Bool)
+    {
+           if animate
+           {
+               TableActivityIndicator.startAnimating()
+           }
+           else
+           {
+               TableActivityIndicator.stopAnimating()
+           }
+    }
+    func showLoginFailure(message: String) {
+        let alertVC = UIAlertController(title: "Failed Loading Student Locations", message: message, preferredStyle:.alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
+    }
    
     
 }

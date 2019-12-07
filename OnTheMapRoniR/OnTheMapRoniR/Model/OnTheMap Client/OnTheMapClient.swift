@@ -237,7 +237,7 @@ class OnTheMapClient
                     completion(responseObject, nil)
                 }
                 
-            } catch let error {
+            } catch _ {
                 
                 /*if let decodingError = error as? DecodingError{
                     print("ERROR converting: \(decodingError.errorDescription.debugDescription)  ERROR REASON: \(decodingError.failureReason.debugDescription) LOCALIZED DESCRIPTION: \(decodingError.localizedDescription)")
@@ -279,8 +279,8 @@ class OnTheMapClient
         }
         
         request.httpBody = try!JSONEncoder().encode(body)
-        print(request.url?.absoluteString)
-        print("DEBUG POST: \(request.httpBody?.description)")
+        print(request.url?.absoluteString ?? "NA")
+        print("DEBUG POST: \(String(describing: request.httpBody?.description))")
         
         let task = URLSession.shared.dataTask(with: request){data,response,error in
             guard var data = data else{
