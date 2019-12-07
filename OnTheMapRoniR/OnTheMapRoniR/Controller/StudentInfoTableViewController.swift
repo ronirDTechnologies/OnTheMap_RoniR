@@ -14,16 +14,38 @@ class StudentInfoTableViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         let barButtonItemAddLoc = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
+        let refreshButtonItemAddLoc = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonList))
+        navigationItem.rightBarButtonItems = [barButtonItemAddLoc,refreshButtonItemAddLoc]
         OnTheMapClient.getStudentInformation(numberOfStudentsToRetrieve: "100"){(data,error) in
             guard let data = data else{
+                // TODO 12-05: Show Error Message if download fails
                 return
             }
             StudentModel.studentList = data
             self.StudentInfoTV.reloadData()
         }
+       
         
     }
-    
+    @objc func refreshButtonList()
+    {
+        OnTheMapClient.getStudentInformation(numberOfStudentsToRetrieve: "100"){(data,error) in
+            guard let data = data else{
+                // TODO 12-05: Show error message if download fails
+                return
+            }
+            StudentModel.studentList = data
+            self.StudentInfoTV.reloadData()
+        }
+    }
+    @objc func addButtonPressed()
+    {
+        //tabBarController?.hidesBottomBarWhenPushed = true
+        let addLocVC = storyboard!.instantiateViewController(withIdentifier: "AddLocationVC")  as! AddLocViewController
+        navigationController?.pushViewController(addLocVC, animated: true)
+        
+    }
     @IBAction func LogoutBtn(_ sender: Any)
     {
         self.navigationController?.dismiss(animated: true, completion: nil)
@@ -33,6 +55,8 @@ class StudentInfoTableViewController: UIViewController{
         
         StudentInfoTV.reloadData()
     }
+    
+   
     
 }
 
@@ -59,12 +83,10 @@ extension StudentInfoTableViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //TODO: 09-23-2019 Check validity of URL before launching
+      
         UIApplication.shared.open(URL(string: StudentModel.studentList[indexPath.row].mediaURL)!, options: [:], completionHandler: nil)
         
-        /*selectedIndex = indexPath.row
-        performSegue(withIdentifier: "showDetail", sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)*/
+        
     }
     
     
