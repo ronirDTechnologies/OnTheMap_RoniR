@@ -26,13 +26,6 @@ class AddLocationViewController: UIViewController, UINavigationControllerDelegat
          showLoginFailure(message: "THE ADDRESS CANNOT BE BLANK.  PLEASE FILL IN CITY / STATE")
             return
         }
-        
-        
-        
-       
-        
-        
-        
         // 3. Check URL is valid
         guard let urlVal = URL(string: UrlTxtBx.text ?? "na") else { return }
         let validURl = UIApplication.shared.canOpenURL(urlVal)
@@ -54,18 +47,12 @@ class AddLocationViewController: UIViewController, UINavigationControllerDelegat
         //print("LONGITUDE: \(OnTheMapClient.LocationDetail.longitudeVal)")
         //findCityCoordinates(cityName: AddressTxtBx.text ?? "")
     }
-    func DebugPostedUserLocation(successfulPost:Bool, error: Error?)
+    func HandlePostUserResponse(successfulPost:Bool, error: Error?)
     {
         print("THE POSTING HAS THE FOLLOWING STATUS \(successfulPost)")
         print("LATITUDE: \(OnTheMapClient.LocationDetail.latitudeVal)")
         print("LONGITUDE: \(OnTheMapClient.LocationDetail.longitudeVal)")
-        //performSegue(withIdentifier: "OnTheMapSegue", sender: nil)
-        
-        //self.navigationController?.performSegue(withIdentifier: "BackToMapSegue", sender: nil)
-        //self.navigationController?.popToRootViewController(animated: true)
-        //self.performSegue(withIdentifier: "AddLocationSegue", sender: nil)
-        //self.navigationController?.unwind(for: self.seg, towards: StudentLocationMapViewController)
-        navigationController?.popToRootViewController(animated: true)
+        self.dismiss(animated: true, completion: {})
         
     }
     func HandleLocationCheckResponse(locationExists: Bool, error: Error?)
@@ -78,15 +65,7 @@ class AddLocationViewController: UIViewController, UINavigationControllerDelegat
             print("LONGITUDE: \(OnTheMapClient.LocationDetail.longitudeVal)")
             let urlStr = UrlTxtBx.text ?? ""
           
-            OnTheMapClient.postStudentInformationLocation(mapStringLocation: AddressTxtBx.text ?? "", mediaUrlStr: urlStr, completion: self.DebugPostedUserLocation(successfulPost:error:))
-            
-            //navigationController?.dismiss(animated: true, completion: {})
-            //storyboard.stude  StudentLocationMapVC.
-            
-            //self.navigationController?.popViewController(animated: true)
-            
-            
-            //self.dismiss(animated: true, completion: {})
+            OnTheMapClient.postStudentInformationLocation(mapStringLocation: AddressTxtBx.text ?? "", mediaUrlStr: urlStr, completion: self.HandlePostUserResponse(successfulPost:error:))
             
         }
         else{
@@ -121,11 +100,11 @@ class AddLocationViewController: UIViewController, UINavigationControllerDelegat
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   // override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "BackToMapSegue"{
-            if let destinationVC = segue.destination as? StudentLocationMapViewController {
+        //if segue.identifier == "AddLocationSeg"{
+         //   if let destinationVC = segue.destination as? AddLocationViewController {
                    //destinationVC.numberToDisplay = counter
             
             //DispatchQueue.main.async
@@ -133,14 +112,14 @@ class AddLocationViewController: UIViewController, UINavigationControllerDelegat
                    /* let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: OnTheMapClient.LocationDetail.latitudeVal, longitude: OnTheMapClient.LocationDetail.longitudeVal), span: MKCoordinateSpan(latitudeDelta: 0.07, longitudeDelta: 0.07))
                     
                     destinationVC.StudentLocationMap.setRegion(region, animated: true)*/
-                    destinationVC.LoadDataPoints()
+                    //destinationVC.LoadDataPoints()
                     //destinationVC.StudentLocationMap.reloadInputViews()
                     //destinationVC.self.reloadInputViews()
                 //let annotation = MKPointAnnotation()
                 //annotation.coordinate = location.coordinate
                 //self.mapView.addAnnotation(annotation)
                //}
-            }}}
+            }
     
 
-}
+
