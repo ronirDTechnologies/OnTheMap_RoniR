@@ -24,7 +24,6 @@
 		BB910F7E2333FDD5002F63F4 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB910F7D2333FDD5002F63F4 /* StudentModel.swift */; };
 		BB96AAF9237B4D3A0015EEC7 /* AddLocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB96AAF8237B4D3A0015EEC7 /* AddLocViewController.swift */; };
 		BB9F0D1E2339BF4D009D2EF9 /* StudentLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F0D1D2339BF4D009D2EF9 /* StudentLocationMapViewController.swift */; };
-		BBA75C5D233AB0B600ECBD9F /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA75C5C233AB0B600ECBD9F /* AddLocationViewController.swift */; };
 		BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21097231ED5800068C77E /* AccountResponse.swift */; };
 		BBB2109A231ED61C0068C77E /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB21099231ED61C0068C77E /* SessionResponse.swift */; };
 		BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */; };
@@ -54,7 +53,6 @@
 		BB910F7D2333FDD5002F63F4 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		BB96AAF8237B4D3A0015EEC7 /* AddLocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocViewController.swift; sourceTree = "<group>"; };
 		BB9F0D1D2339BF4D009D2EF9 /* StudentLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationMapViewController.swift; sourceTree = "<group>"; };
-		BBA75C5C233AB0B600ECBD9F /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
 		BBB21097231ED5800068C77E /* AccountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountResponse.swift; sourceTree = "<group>"; };
 		BBB21099231ED61C0068C77E /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		BBBBFBAF230F0B070055A7D6 /* OTMResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMResponse.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				BB45A36422F928F00004620E /* LaunchScreen.storyboard */,
 				BB71011B233321E500E4A7DA /* StudentInfoTableViewController.swift */,
 				BB9F0D1D2339BF4D009D2EF9 /* StudentLocationMapViewController.swift */,
-				BBA75C5C233AB0B600ECBD9F /* AddLocationViewController.swift */,
 				BB96AAF8237B4D3A0015EEC7 /* AddLocViewController.swift */,
 			);
 			path = Controller;
@@ -273,7 +270,6 @@
 				BB7F9B842316FA4A0099E486 /* LoginRequest.swift in Sources */,
 				BB527C3A233E83540088F269 /* LocationCoordinatesModel.swift in Sources */,
 				BBB21098231ED5800068C77E /* AccountResponse.swift in Sources */,
-				BBA75C5D233AB0B600ECBD9F /* AddLocationViewController.swift in Sources */,
 				BB7AD6DE232FFB1600AD5DF5 /* StudentInformation.swift in Sources */,
 				BBBBFBB0230F0B070055A7D6 /* OTMResponse.swift in Sources */,
 				BB11E1D92360CA440026C5AF /* PostingStudentLocationResponse.swift in Sources */,
