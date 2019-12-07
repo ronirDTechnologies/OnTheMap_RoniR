@@ -38,6 +38,7 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate{
     
     @objc func refreshButtonPressed()
     {
+        // Show activity indicator when refreshed button is tapped
         self.SetWorkingAnimation(animate: true)
         self.StudentLocationMap.removeAnnotations(annotations)
         self.LoadDataPoints()
@@ -73,10 +74,11 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate{
             
             StudentModel.studentList = data
             
-                if (StudentModel.studentList.count <= 0)
+            // If no student locations are downloaded notify users
+            if (StudentModel.studentList.count <= 0)
             {
                 self.SetWorkingAnimation(animate: false)
-                self.showLoginFailure(message: "FAILED TO DOWNLOAD STUDENT LOCATIONS.  PLEASE TRY TO REFRESH")
+                self.showLoginFailure(message: "FAILED TO DOWNLOAD STUDENT LOCATIONS.  PLEASE TRY TO REFRESH", titleVal: "STUDENT DOWNLOAD FAILED")
                 print("Students failed to download")
                 return
             }
@@ -149,12 +151,13 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate{
         }
     }
  
-    func showLoginFailure(message: String)
+    func showLoginFailure(message: String, titleVal: String)
     {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle:.alert)
+        let alertVC = UIAlertController(title: titleVal, message: message, preferredStyle:.alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
+    
     override func reloadInputViews()
     {
         LoadDataPoints()

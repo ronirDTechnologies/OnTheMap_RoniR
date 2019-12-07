@@ -21,6 +21,7 @@ class StudentInfoTableViewController: UIViewController{
         let refreshButtonItemAddLoc = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonList))
         navigationItem.rightBarButtonItems = [barButtonItemAddLoc,refreshButtonItemAddLoc]
         
+        //  Retrieve 100 of the most recent student entries
         OnTheMapClient.getStudentInformation(numberOfStudentsToRetrieve: "100"){(data,error) in
             guard let data = data else
             {
@@ -28,6 +29,7 @@ class StudentInfoTableViewController: UIViewController{
             }
             StudentModel.studentList = data
             
+            // Alert the user if no students are downloaded
             if(StudentModel.studentList.count == 0)
             {
                 self.showLoginFailure(message: "Unable to download student data.  Try to refresh")

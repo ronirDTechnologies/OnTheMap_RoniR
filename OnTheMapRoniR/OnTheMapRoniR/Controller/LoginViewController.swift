@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordBtn: UIButton!
     @IBOutlet weak var signUpBtn: UIButton!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController {
        getSessionHelper()
     }
     
+    // Lets user create a Udacity user name
     @IBAction func launchUdacitySignUp(_ sender: Any)
     {
         print("LAUNCH UDACITY SIGNUP")

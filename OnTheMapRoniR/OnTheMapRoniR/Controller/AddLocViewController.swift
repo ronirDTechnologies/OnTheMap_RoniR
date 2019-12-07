@@ -93,9 +93,7 @@ class AddLocViewController: UIViewController,UINavigationControllerDelegate,MKMa
         
         if(successfulPost)
         {
-            // TODO 12-02-2019: Dismiss view controller
             navigationController?.popViewController(animated: true)
-            //self.dismiss(animated: true, completion: {})
         }
             
         else
